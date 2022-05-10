@@ -1,0 +1,133 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body p-3 clearfix">
+          <i class="fa fa-sun-o bg-primary p-3 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-primary mb-0 mt-2">{{weatherNow.solarIrr}} W/m²</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">SOLAR IRRADIATION</div>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+        <div class="card">
+            <div class="card-body p-3 clearfix">
+              <i class="fa fa-thermometer-empty bg-warning p-3 font-2xl mr-3 float-left"></i>
+              <div class="h5 text-warning mb-0 mt-2">{{weatherNow.ambientTemp}} &deg;C</div>
+              <div class="text-muted text-uppercase font-weight-bold font-xs">ambient TEMPRATURE</div>
+            </div>
+          </div>
+    </div>
+    <!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+        <div class="card">
+            <div class="card-body p-3 clearfix">
+              <i class="fa fa-dashboard bg-danger p-3 font-2xl mr-3 float-left"></i>
+              <div class="h5 text-danger mb-0 mt-2">{{weatherNow.moduleTemp}} &deg;C</div>
+              <div class="text-muted text-uppercase font-weight-bold font-xs">MODULE temprature</div>
+            </div>
+          </div>
+    </div>
+    <!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+        <div class="card">
+            <div class="card-body p-3 clearfix">
+              <i class="fa fa-cloud bg-success p-3 font-2xl mr-3 float-left"></i>
+              <div class="h5 text-success mb-0 mt-2">{{weatherNow.humidity}}%</div>
+              <div class="text-muted text-uppercase font-weight-bold font-xs">humidity</div>
+            </div>
+          </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-5">
+          <h4 class="card-title mb-0">Power sumary</h4>
+          <div class="small text-muted">{{today}}</div>
+        </div>
+        <!--/.col-->
+      </div>
+      <!--/.row-->
+      <div class="chart-wrapper" style="height:300px;margin-top:40px;">
+        <canvas baseChart class="chart" [datasets]="mainChartData" [labels]="mainChartLabels" [options]="mainChartOptions" [colors]="mainChartColours"
+          [legend]="mainChartLegend" [chartType]="mainChartType"></canvas>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="row text-center">
+        <div class="col-sm-12 col-md mb-sm-2 mb-0">
+          <strong>Predicted DC power</strong>
+          <div class="progress progress-xs mt-2">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="25"></div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md mb-sm-2 mb-0">
+          <strong>Predicted AC power</strong>
+          <div class="progress progress-xs mt-2">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="25"></div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md mb-sm-2 mb-0">
+          <strong>Actual DC power</strong>
+          <div class="progress progress-xs mt-2">
+            <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="25"></div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md mb-sm-2 mb-0">
+          <strong>Actual AC power</strong>
+          <div class="progress progress-xs mt-2">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="25"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-lg-4">
+      <div class="card border-success">
+        <div class="card-header">DC Power</div>
+        <div class="card-body text-center text-success">
+          <div class="h4 m-0">{{dcReal}} W</div>
+          <div>Planet Generation</div>
+          <div class="progress progress-xs my-3">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="h4 m-0">{{dcPredicted}} W</div>
+          <div>Predicted Generation</div>
+          <small class="text-muted">{{modulePerformance}} Panels Performance.</small>
+        </div>
+      </div>
+    </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card border-success">
+          <div class="card-header">Inverter Efficiency</div>
+          <div class="card-body text-center text-success">
+            <h1>
+                {{inverterEfficiency}}%
+            </h1>
+          </div>
+        </div>
+      </div>
+    <!--/.col-->
+    <div class="col-sm-6 col-lg-4 ml-auto">
+      <div class="card border-success">
+        <div class="card-header">AC Power</div>
+        <div class="card-body text-center text-success">
+          <div class="h4 m-0">{{acReal}} W</div>
+          <div>Plant Generation</div>
+          <div class="progress progress-xs my-3">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="h4 m-0">{{acPredicted}} W</div>
+          <div>Predicted Generation</div>
+          <small class="text-muted">{{inverterPerformance}} Inverter Performance.</small>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
